@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# 🌦️ Weather Now
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Built for Jamie – Outdoor Enthusiast 🌍**  
+A fast and elegant weather app that shows **live weather reports for any city, town, or village in India** — powered by **Open-Meteo API** and **OpenStreetMap (Nominatim)**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+✅ Get **real-time weather conditions** for **any location** across India  
+✅ Uses **Open-Meteo API** (no API key needed)  
+✅ Dynamic **background changes** — sunny, cloudy, rainy, stormy, or night  
+✅ Beautiful, **animated UI** built with React & CSS  
+✅ Responsive design (works on desktop & mobile)  
+✅ Graceful error handling for unknown places  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🎯 User Persona
 
-### `npm test`
+**👤 Name:** Jamie  
+**💼 Occupation:** Outdoor Enthusiast  
+**🌱 Need:** Quickly check the current weather conditions for any city or village to plan outdoor activities.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧠 How It Works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **User searches** for any Indian city, town, or village.  
+2. The app uses **OpenStreetMap (Nominatim)** to find latitude & longitude.  
+3. Those coordinates are sent to **Open-Meteo API** to fetch live weather data.  
+4. The app displays:
+   - 🌡️ Temperature  
+   - 🤗 Feels Like  
+   - 💧 Humidity  
+   - 🌬️ Wind Speed  
+   - ⚖️ Pressure  
+   - 🌤️ Weather Description  
+5. Background automatically updates to match weather (e.g., sunny, rainy, night).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🧩 Tech Stack
 
-### `npm run eject`
+| Technology | Purpose |
+|-------------|----------|
+| **React.js** | Frontend Framework |
+| **CSS3** | Styling & Animations |
+| **OpenStreetMap (Nominatim)** | Convert place → coordinates |
+| **Open-Meteo API** | Fetch live weather data |
+| **JavaScript (ES6+)** | Logic & state management |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🖼️ Dynamic Backgrounds
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Weather | Background |
+|----------|-------------|
+| ☀️ Clear / Sunny | Blue sky background |
+| ⛅ Cloudy / Overcast | Cloudy sky background |
+| 🌧️ Rainy / Drizzle | Rain falling background |
+| ⛈️ Thunderstorm | Dark stormy background |
+| 🌙 Night | Starry night background |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠️ Installation & Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/weather-now.git
+cd weather-now
