@@ -5,6 +5,17 @@ export default function App() {
   const [place, setPlace] = useState("");
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // ✅ Must be declared before use
+  const getBackgroundType = (code, isDay) => {
+    if (!isDay) return "night";
+    if (code === 0) return "sunny";
+    if ([1, 2, 3].includes(code)) return "cloudy";
+    if ([51, 61, 80].includes(code)) return "rainy";
+    if (code === 95) return "stormy";
+    return "default";
+  };
 
   const fetchWeather = async () => {
     if (!place.trim()) {
@@ -15,8 +26,9 @@ export default function App() {
     try {
       setError("");
       setWeather(null);
+      setLoading(true);
 
-      // 🌍 Step 1: Get coordinates from Nominatim (OpenStreetMap)
+      // Geolocation API call
       const geoRes = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
           place
@@ -26,16 +38,23 @@ export default function App() {
 
       if (!geoData || geoData.length === 0) {
         setError("Location not found. Try another name.");
+        setLoading(false);
         return;
       }
 
       const { lat, lon, display_name } = geoData[0];
 
-      // ☀️ Step 2: Get current weather using Open-Meteo
+      // Weather API call (with units specified)
       const weatherRes = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,pressure_msl,weathercode,is_day&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,pressure_msl,weathercode,is_day&timezone=auto&wind_speed_unit=kmh`
       );
       const weatherData = await weatherRes.json();
+
+      if (!weatherData.current) {
+        setError("Weather data unavailable for this location.");
+        setLoading(false);
+        return;
+      }
 
       const w = weatherData.current;
       const weatherDesc = {
@@ -50,7 +69,6 @@ export default function App() {
         95: "Thunderstorm ⛈️",
       };
 
-      // 🌈 Map weather codes to background types
       const bgType = getBackgroundType(w.weathercode, w.is_day);
 
       setWeather({
@@ -67,17 +85,9 @@ export default function App() {
     } catch (err) {
       console.error(err);
       setError("Unable to fetch weather data. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  };
-
-  // 🌤️ Decide which background to show
-  const getBackgroundType = (code, isDay) => {
-    if (!isDay) return "night";
-    if (code === 0) return "sunny";
-    if ([1, 2, 3].includes(code)) return "cloudy";
-    if ([51, 61, 80].includes(code)) return "rainy";
-    if (code === 95) return "stormy";
-    return "default";
   };
 
   return (
@@ -96,8 +106,8 @@ export default function App() {
             placeholder="Enter city or village name..."
             className="search-input"
           />
-          <button onClick={fetchWeather} className="search-btn">
-            Search
+          <button onClick={fetchWeather} className="search-btn" disabled={loading}>
+            {loading ? "Loading..." : "Search"}
           </button>
         </div>
 
@@ -122,3 +132,4 @@ export default function App() {
     </div>
   );
 }
+
